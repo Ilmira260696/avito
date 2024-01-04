@@ -1,10 +1,11 @@
 .input {
     width: 100%;
+    border: none;
     border-bottom: 1px solid #d0cece;
-    font-size: 18px;
-    line-height: 24px;
-    outline: none;
+    padding: 8px 1px;
+   
 }
 .input::placeholder {
     color: #e1e1e1;
+    line-height: 24px;
 }

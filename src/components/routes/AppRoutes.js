@@ -1,21 +1,25 @@
-import { Route, Routes } from 'react-router-dom'
-import { publicRoutes, privateRoutes } from '../../routes/routes'
+import { Routes, Route } from 'react-router-dom'
+import Auth from '../../pages/Auth/Auth'
+import { ProtectedRoute } from './ProtectedRoute'
+import Layout from '../../pages/Layout/Layout'
+import Main from '../../pages/Main/Main'
+import Seller from '../../pages/Seller/Seller'
+import Profile from '../../pages/Profile/Profile'
+import Adv from '../../pages/Adv/Adv'
 
-function AppRoutes() {
-    return (
-        <Routes>
-            <Route>
-                {privateRoutes.map((r) => (
-                    <Route key={r.path} element={r.element} path={r.path} />
-                ))}
-            </Route>
-            <Route>
-                {publicRoutes.map((r) => (
-                    <Route key={r.path} element={r.element} path={r.path} />
-                ))}
-            </Route>
-        </Routes>
-    )
+export function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/Auth" element={<Auth />} />
+
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Main />} />
+          <Route path="/Adv" element={<Adv />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Seller" element={<Seller />} />
+        </Route>
+      </Route>
+    </Routes>
+  )
 }
-
-export default AppRoutes
